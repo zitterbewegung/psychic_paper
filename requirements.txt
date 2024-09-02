@@ -136,6 +136,6 @@ urllib3==1.26.19
 uvicorn==0.30.6
 v4l2-python3==0.3.2
 webencodings==0.5.1
-Werkzeug==1.0.1
+Werkzeug==3.0.3
 wikiquotes==1.4
 wrapt==1.12.1
