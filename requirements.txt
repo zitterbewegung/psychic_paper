@@ -27,7 +27,7 @@ envirophat==1.0.0
 exceptiongroup==1.2.2
 ExplorerHAT==0.4.2
 fastapi==0.112.2
-Flask==1.1.2
+Flask==2.2.5
 font-fredoka-one==0.0.4
 font-hanken-grotesk==0.0.2
 font-intuitive==0.0.4
