@@ -1,18 +1,23 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from fastapi import FastAPI, File, UploadFile, HTTPException, BackgroundTasks
-from fastapi.responses import HTMLResponse, JSONResponse
+from fastapi import FastAPI, BackgroundTasks, HTTPException, File, UploadFile
+from fastapi.responses import JSONResponse, HTMLResponse, FileResponse
+from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
-from PIL import Image, ExifTags
-from io import BytesIO
-import inky
+#from picamera import PiCamera
+#from picamera.array import PiRGBArray
+from PIL import Image
+import cv2
+import numpy as np
 import time
+import inky
+import os
 
 # Initialize FastAPI
 app = FastAPI()
 
-# Allow CORS for all origins (adjust as needed for security)
+# Add CORS middleware to allow requests from any origin
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -21,95 +26,168 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Initialize the Inky ePaper display (adjust this initialization according to your specific seven-color display)
-display = inky.auto()  # Automatically detect your Inky display type and version
+# Serve static files (like favicon)
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
-def process_image(image: Image.Image):
-    """Process the image to correct orientation and resize it for the ePaper screen."""
-    # Correct image orientation using EXIF data, if available
+# Initialize the camera and the Inky display
+#camera = PiCamera()
+#camera.resolution = (1280, 720)  # Set resolution suitable for ID card capture
+#camera.framerate = 30
+#raw_capture = PiRGBArray(camera, size=camera.resolution)
+
+# Initialize the Inky display (automatically detects connected display)
+display = inky.auto()
+
+#def capture_image():
+#    """Capture an image from the PiCamera and save it locally."""
+#    try:
+#        print("Capturing image...")
+#        camera.capture(raw_capture, format="bgr")
+#        image = raw_capture.array
+#
+#        # Save the captured image
+#        image_path = "captured_id_card.jpg"
+#        cv2.imwrite(image_path, image)
+#        print(f"Image saved as {image_path}")
+#        return image_path
+#
+#    except Exception as e:
+#        print(f"Error capturing image: {e}")
+#        raise
+
+def transform_image_for_display(image_path):
+    """Transform the captured image to fit the Inky 4-inch display."""
     try:
-        for orientation in ExifTags.TAGS.keys():
-            if ExifTags.TAGS[orientation] == 'Orientation':
-                break
+        pil_image = Image.open(image_path)
         
-        exif = image._getexif()
-        if exif is not None:
-            orientation = exif.get(orientation, None)
-            if orientation == 3:
-                image = image.rotate(180, expand=True)
-            elif orientation == 6:
-                image = image.rotate(270, expand=True)
-            elif orientation == 8:
-                image = image.rotate(90, expand=True)
+        # Resize the image to match the Inky display resolution
+        display_resolution = display.resolution
+        transformed_image = pil_image.resize(display_resolution, Image.ANTIALIAS)
+
+        # Ensure image mode matches the display color capabilities
+        transformed_image = transformed_image.convert("RGB")
+        transformed_image.save("transformed_image.png")  # Save transformed image
+
+        return transformed_image
+
     except Exception as e:
-        print(f"EXIF orientation correction failed: {e}")
+        print(f"Error transforming image: {e}")
+        raise
 
-    # Resize the image to match the display's resolution
-    image = image.resize(display.resolution, Image.ANTIALIAS)
-    return image
-
-def display_image(image: Image.Image):
-    """Function to display the image on the ePaper screen."""
+def display_image_on_inky(transformed_image):
+    """Display the transformed image on the Pimoroni Inky display."""
     try:
-        # Simulate some processing delay for visual feedback
-        time.sleep(2)  # Optional: simulate processing delay for user feedback
-        display.set_image(image)
+        display.set_image(transformed_image)
         display.show()
-        print("Image successfully displayed on the ePaper screen.")
+        print("Image successfully displayed on the Inky screen.")
     except Exception as e:
         print(f"Error displaying image: {e}")
+        raise
 
 @app.post("/upload/")
 async def upload_image(file: UploadFile = File(...), background_tasks: BackgroundTasks = None):
-    # Check if the uploaded file is a JPEG
+    """
+    Endpoint to upload an image for display.
+    Requires a JPEG image, rotated 90 degrees, and sized 400x640 pixels.
+    """
     if not file.filename.lower().endswith(('jpeg', 'jpg')):
         raise HTTPException(status_code=400, detail="Invalid file format. Only JPEG images are supported.")
-    
+
     try:
-        # Read the image file
-        contents = await file.read()
-        image = Image.open(BytesIO(contents))
+        # Save the uploaded image
+        image_path = f"uploaded_{file.filename}"
+        with open(image_path, "wb") as f:
+            f.write(await file.read())
 
-        # Process the image without changing its color format
-        processed_image = process_image(image)
+        # Open and validate the image
+        image = Image.open(image_path)
+        if image.size != (400, 640):
+            raise HTTPException(status_code=400, detail="Image must be 400x640 pixels.")
+        image = image.rotate(90, expand=True)  # Rotate the image by 90 degrees
 
-        # Add the display task to the background to not block the response
-        background_tasks.add_task(display_image, processed_image)
+        # Save the rotated image
+        image.save(image_path)
+        print(f"Uploaded image saved as {image_path}")
 
-        # Return immediate response indicating that processing has started
-        return JSONResponse(content={"filename": file.filename, "status": "Image is being processed and displayed on ePaper screen."})
+        # Add the display process to the background
+        background_tasks.add_task(display_process, image_path)
+
+        return JSONResponse(content={"status": "Image uploaded and display initiated."})
 
     except Exception as e:
-        print(f"Error processing image: {e}")
-        raise HTTPException(status_code=500, detail="Failed to process and display the image.")
+        print(f"Error processing uploaded image: {e}")
+        raise HTTPException(status_code=500, detail="Failed to process and display the uploaded image.")
+
+def display_process(image_path):
+    """Background task to transform and display the uploaded image."""
+    try:
+        # Transform the uploaded image to fit the Inky display
+        transformed_image = transform_image_for_display(image_path)
+
+        # Display the transformed image on the Inky screen
+        display_image_on_inky(transformed_image)
+
+    except Exception as e:
+        print(f"Error during display process: {e}")
 
 @app.get("/")
 async def main():
-    # HTML Form to upload a file
+    """Main UI with instructions and upload form."""
     content = """
-    <html>
-        <head>
-            <script>
-                function showLoading() {
-                    document.getElementById('loading').style.display = 'block';
-                }
-            </script>
-        </head>
-        <body>
-            <h1>Upload a JPEG Image (640x400px)</h1>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Inky ePaper Display</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
+        <style>
+            body { margin-top: 20px; }
+            .container { max-width: 600px; }
+        </style>
+    </head>
+    <body>
+        <div class="container text-center">
+            <h1 class="mb-4">Psychic Paper Programmer</h1>
+            <p class="mb-4">This application can be used to clone photo ID badges. Please upload a JPEG image that is rotated by 90 degrees and is 400x640 pixels.</p>
             <form action="/upload/" enctype="multipart/form-data" method="post" onsubmit="showLoading()">
-                <input name="file" type="file" accept="image/jpeg" required>
-                <input type="submit" value="Upload Image">
+                <div class="form-group">
+                    <input name="file" type="file" accept="image/jpeg" class="form-control-file" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Upload Image</button>
             </form>
-            <div id="loading" style="display:none;">
+            <div id="loading" style="display:none;" class="mt-3">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="sr-only">Uploading and processing your image... Please wait!</span>
+                </div>
                 <p>Uploading and processing your image... Please wait!</p>
             </div>
-        </body>
+        </div>
+
+        <script>
+            function showLoading() {
+                document.getElementById('loading').style.display = 'block';
+            }
+        </script>
+    </body>
     </html>
     """
     return HTMLResponse(content=content)
 
-# Ensure this block only runs when the script is executed directly
+# Serve the favicon
+@app.get("/favicon.ico", include_in_schema=False)
+async def favicon():
+    return FileResponse("static/favicon.ico")
+
+# Ensure cleanup when the application shuts down
+@app.on_event("shutdown")
+def shutdown_event():
+    camera.close()
+    print("Camera closed.")
+
+# Entry point for running the FastAPI app with uvicorn
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
