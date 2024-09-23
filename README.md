@@ -7,7 +7,6 @@ This project allows users to upload an image (JPEG format) through a FastAPI ser
 - **FastAPI-based Web Interface**: A simple web form to upload a JPEG image to be displayed on the ePaper screen.
 - **Background Image Processing**: Processes image orientation based on EXIF data and resizes it to fit the ePaper screen.
 - **ePaper Display Integration**: Uses the Inky Python library to render images on the Inky seven-color ePaper display.
-- **CORS Support**: Allows Cross-Origin Resource Sharing (CORS) from all origins, making it easy to interact with the API from different frontends (modifiable for security reasons).
 
 ## Requirements
 
