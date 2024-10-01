@@ -12,8 +12,6 @@ This project allows users to upload an image (JPEG format) through a FastAPI ser
 
 ### Hardware (Bill of Materials)
 
-### Updated Bill of Materials (BOM)
-
 | Part Number | Description                                                                                       | Quantity | Supplier        | Unit Cost | Total Cost | Link                                                                                                                                          |
 | ----------- | ------------------------------------------------------------------------------------------------- | -------- | --------------- | --------- | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
 | 001         | Waveshare 4.01inch Colorful e-Paper Display Module, 640×400 Resolution                             | 1        | Amazon          | $72.99    | $72.99     | [Link](https://www.amazon.com/Waveshare-4-01inch-Colorful-Display-640×400/dp/B0972R7F2Q)                                                        |
