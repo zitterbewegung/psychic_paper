@@ -8,7 +8,7 @@
 // Features include a lanyard loop, GPIO cutout for Raspberry Pi HAT connector,
 // a transparent display window, and button cutouts.
 //
-// Author: ChatGPT
+// Author: ChatGPT / zitterbewegung
 // Date: 2024-04-27
 // ==================================================
 
