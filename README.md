@@ -46,3 +46,14 @@ This project allows users to upload an image (JPEG format) through a FastAPI ser
 
 ```bash
 pip install fastapi uvicorn inky pillow
+```
+
+### Rendering the case using openscad
+
+docker run \
+    -it \
+    --rm \
+    -v $(pwd):/openscad \
+    -u $(id -u ${USER}):$(id -g ${USER}) \
+    openscad/openscad:latest \
+    openscad -o case.stl case.scad
