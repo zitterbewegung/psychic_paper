@@ -17,7 +17,7 @@ This project allows users to upload an image (JPEG format) through a FastAPI ser
 | 002         | Waveshare Universal e-Paper Driver Board (Supports various interfaces including Bluetooth & USB)   | 1        | Amazon          | $35.99    | [Link](https://www.amazon.com/Waveshare-Universal-Interface-Refreshing-Bluetooth/dp/B07RM1BBVF)                                                 |
 | 003         | Professional 12-inch Industrial Tailoring Scissors                                                | 1        | Amazon          | $22.99    |  [Link](https://www.amazon.com/Scissors-Professional-Tailoring-Industrial-Dressmakers/dp/B07Y2ZBSN1/)                                            |
 | 004         | Scotch Double Sided Tape with Dispensers (Pack of 2)                                               | 1        | Amazon          | $9.29     | [Link](https://www.amazon.com/Scotch-Double-Sided-Tape-Dispensers/dp/B002VLA5SI/)                                                               |
-| 005         | Raspberry Pi Model 3a                                          | 1        | Amazon          | $9.29     | [Link](https://www.amazon.com/Raspberry-Pi-3-Computer-Board/dp/B07KKBCXLY)                                                               |
+| 005         | Raspberry Pi Model 3a                                          | 1        | Amazon          | $34.99     | [Link](https://www.amazon.com/Raspberry-Pi-3-Computer-Board/dp/B07KKBCXLY)                                                               |
 
 ### Optional Items (Choose One)
 
