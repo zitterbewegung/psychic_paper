@@ -5,7 +5,6 @@ This project allows users to upload an image (JPEG format) through a FastAPI ser
 ## Features
 
 - **FastAPI-based Web Interface**: A simple web form to upload a JPEG image to be displayed on the ePaper screen.
-- **Background Image Processing**: Processes image orientation based on EXIF data and resizes it to fit the ePaper screen.
 - **ePaper Display Integration**: Uses the Inky Python library to render images on the Inky seven-color ePaper display.
 
 ## Requirements
@@ -14,11 +13,12 @@ This project allows users to upload an image (JPEG format) through a FastAPI ser
 
 | Part Number | Description                                                                                       | Quantity | Supplier        | Unit Cost | Link                                                                                                                                          |
 | ----------- | ------------------------------------------------------------------------------------------------- | -------- | --------------- | --------- |  --------------------------------------------------------------------------------------------------------------------------------------------- |
-| 001         | Inky Impression 4" (7 colour ePaper/eInk HAT)                             | 1        | Amazon          | [$72.99](https://shop.pimoroni.com/products/inky-impression-4?variant=39599238807635)    | [$72.99 ](https://shop.pimoroni.com/products/inky-impression-4?variant=39599238807635)    | [Link]([https://www.amazon.com/Waveshare-4-01inch-Colorful-Display-640×400/dp/B0972R7F2Q](https://shop.pimoroni.com/products/inky-impression-4?variant=39599238807635))                                                        |
+| 001         | Inky Impression 4" (7 colour ePaper/eInk HAT)                             | 1        | Pimoroni          | [$72.99](https://shop.pimoroni.com/products/inky-impression-4?variant=39599238807635)    | [$72.99 ](https://shop.pimoroni.com/products/inky-impression-4?variant=39599238807635)    | [Link]([https://www.amazon.com/Waveshare-4-01inch-Colorful-Display-640×400/dp/B0972R7F2Q](https://shop.pimoroni.com/products/inky-impression-4?variant=39599238807635))                                                        |
 | 002         | Waveshare Universal e-Paper Driver Board (Supports various interfaces including Bluetooth & USB)   | 1        | Amazon          | $35.99    | [Link](https://www.amazon.com/Waveshare-Universal-Interface-Refreshing-Bluetooth/dp/B07RM1BBVF)                                                 |
 | 003         | Professional 12-inch Industrial Tailoring Scissors                                                | 1        | Amazon          | $22.99    |  [Link](https://www.amazon.com/Scissors-Professional-Tailoring-Industrial-Dressmakers/dp/B07Y2ZBSN1/)                                            |
-| 004         | Scotch Double Sided Tape with Dispensers (Pack of 2)                                               | 1        | Amazon          | $9.29     | [Link](https://www.amazon.com/Scotch-Double-Sided-Tape-Dispensers/dp/B002VLA5SI/)                                                               |
-| 005         | Raspberry Pi Model 3a                                          | 1        | Amazon          | $9.29     | [Link](https://www.amazon.com/Raspberry-Pi-3-Computer-Board/dp/B07KKBCXLY)                                                               |
+| 004         | Scotch Double Sided Tape with Dispensers (Pack of 2)                                               | 1        | Amazon (Raspberry Pi          | $9.29     | [Link](https://www.amazon.com/Scotch-Double-Sided-Tape-Dispensers/dp/B002VLA5SI/)                                                               |
+| 005         | Raspberry Pi Model 3a                                          | 1        | Amazon          | $34.99     | [Link](https://www.amazon.com/Raspberry-Pi-3-Computer-Board/dp/B07KKBCXLY)                                                               |
+| 006 |    Leather Repair Tape Self-Adhesive Leather Repair Patch for Couch Furniture Sofas Car Seats Advanced PU Vinyl Leather Repair Kit (Dark Brown, 3.9X79 inch) | 1 | BSZHTECH (Amazon) | $7.99 | [Link](https://www.amazon.com/Leather-Repair-Self-Adhesive-Furniture-Advanced/dp/B09FDYKVMM/ref=asc_df_B09FDYKVMM?mcid=e7a05dfc072731c3965655695bde7f89&tag=hyprod-20&linkCode=df0&hvadid=693370761029&hvpos=&hvnetw=g&hvrand=18107484088857164679&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9021617&hvtargid=pla-1597570154544&th=1)
 
 ### Optional Items (Choose One)
 
