@@ -1,4 +1,5 @@
-# psychic_paper an ePaper ID Badge Red team assessment tool.
+# psychic paper an ePaper ID Badge Red team assessment tool.
+![https://www.twitch.tv/zitterbewegung](https://img.shields.io/badge/Twitch-%239146FF.svg?style=for-the-badge&logo=Twitch&logoColor=white)
 
 This project allows users to upload an image (JPEG format) through a FastAPI server and display it on an Inky ePaper display. It's designed to work with ID badges or other images that you want to render on a seven-color ePaper screen. The project supports automatic image orientation correction and resizing for the display resolution.
 
