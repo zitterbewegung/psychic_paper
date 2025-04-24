@@ -4,7 +4,7 @@ click==8.1.8
 fastapi==0.115.6
 gpiod==2.2.2
 gpiodevice==0.0.5
-h11==0.14.0
+h11==0.16.0
 idna==3.10
 inky==2.0.0
 numpy==2.2.5
