@@ -8,7 +8,7 @@ h11==0.14.0
 idna==3.10
 inky==2.0.0
 numpy==2.2.5
-pillow==11.2.1
+pillow==11.3.0
 pydantic==2.11.3
 pydantic_core==2.33.1
 python-multipart==0.0.20
