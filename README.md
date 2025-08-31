@@ -1,7 +1,5 @@
 # Psychic paper an ePaper ID Badge Red team assessment tool.
-Available on Tindie
-[<a href="https://www.tindie.com/stores/zitterbewegung/?ref=offsite_badges&utm_source=sellers_zitterbewegung&utm_medium=badges&utm_campaign=badge_small"><img src="https://d2ss6ovg47m0r5.cloudfront.net/badges/tindie-smalls.png" alt="I sell on Tindie" width="200" height="55"></a>](https://www.tindie.com/stores/zitterbewegung/?ref=offsite_badges&utm_source=sellers_zitterbewegung&utm_medium=badges&utm_campaign=badge_small)<img width="235" height="65" alt="image" src="https://github.com/user-attachments/assets/ae4512b0-4bb2-43dd-ac1f-bcaf4c2fea8c" />
-
+[![I sell on Tindie](https://raw.githubusercontent.com/zitterbewegung/psychic_paper/refs/heads/main/Tindie_dark_mode.png)](https://www.tindie.com/stores/zitterbewegung/?ref=offsite_badges&utm_source=sellers_zitterbewegung&utm_medium=badges&utm_campaign=badge_large)
 
 
 This project allows users to upload an image (JPEG format) through a FastAPI server and display it on an Inky ePaper display. It's designed to work with ID badges or other images that you want to render on a seven-color ePaper screen. The project supports automatic image orientation correction and resizing for the display resolution.
