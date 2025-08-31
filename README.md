@@ -1,6 +1,5 @@
 # Psychic paper an ePaper ID Badge Red team assessment tool.
 ![https://www.twitch.tv/zitterbewegung](https://img.shields.io/badge/Twitch-%239146FF.svg?style=for-the-badge&logo=Twitch&logoColor=white)
-<a href="https://www.tindie.com/stores/zitterbewegung/?ref=offsite_badges&utm_source=sellers_zitterbewegung&utm_medium=badges&utm_campaign=badge_large"><img src="https://d2ss6ovg47m0r5.cloudfront.net/badges/tindie-larges.png" alt="I sell on Tindie" width="200" height="104"></a> 
 
 This is available on Tindie [![I sell on Tindie](https://d2ss6ovg47m0r5.cloudfront.net/badges/tindie-larges.png)](https://www.tindie.com/stores/zitterbewegung/?ref=offsite_badges&utm_source=sellers_zitterbewegung&utm_medium=badges&utm_campaign=badge_large)
 
