@@ -1,6 +1,6 @@
 # Psychic paper an ePaper ID Badge.
 
-Available on Tinde find it at my shop below ! &nbsp;
+Available on Tindie find it at my shop below ! &nbsp;
 
 [![I sell on Tindie](https://raw.githubusercontent.com/zitterbewegung/psychic_paper/refs/heads/main/Tindie_dark_mode.png)](https://www.tindie.com/stores/zitterbewegung/?ref=offsite_badges&utm_source=sellers_zitterbewegung&utm_medium=badges&utm_campaign=badge_large)
 
