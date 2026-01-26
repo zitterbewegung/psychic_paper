@@ -117,7 +117,7 @@ skywriter==0.0.7
 slacker==0.14.0
 smbus2==0.4.3
 sn3218==1.2.7
-python-multipart==0.0.20
+python-multipart==0.0.22
 anyio==4.7.0
 click==8.1.8
 fastapi==0.115.6
